@@ -1,11 +1,10 @@
-baseURL = 'https://northaugustabarbell.github.io/'
-languageCode = 'en-us'
-title = 'W⋊B'
+baseURL = 'localhost'
+title = 'Wor⋊er Bee'
 theme = 'nab-dark'
 
 [params]
 subtitle = 'TODO'
-email = 'NorthAugustaBarbell@gmail.com'
+email = 'harley.eades@gmail.com'
 copyright = '2026-2027 WKB'
 instagram = 'todo'
 
