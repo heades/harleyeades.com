@@ -1,16 +1,13 @@
 baseURL = 'https://northaugustabarbell.github.io/'
 languageCode = 'en-us'
-title = 'North Augusta Barbell'
+title = 'W⋊B'
 theme = 'nab-dark'
 
 [params]
-subtitle = 'Home of Olympic Weightlifting in the CSRA'
-address = '1764 Knox Ave. North Augusta, SC'
-hours = '<div class="day">Monday-Saturday:</div><div class="time">5am – 10pm</div><div class="day">Sunday:</div><div class="time">Closed</div>'
-phone = '704-577-6049'
+subtitle = 'TODO'
 email = 'NorthAugustaBarbell@gmail.com'
-copyright = '2026-2027 North Augusta Barbell'
-instagram = 'northaugustabarbell'
+copyright = '2026-2027 WKB'
+instagram = 'todo'
 
 [menus]
   [[menus.main]]
@@ -19,24 +16,19 @@ instagram = 'northaugustabarbell'
     weight = 1
 
   [[menus.main]]
-    name = 'Staff'
-    pageRef = '/staff'
-    weight = 3
-
-  [[menus.main]]
     name = 'About'
     pageRef = '/about'
-    weight = 4
+    weight = 3
   
   [[menus.main]]
-    name = 'Contact'
-    pageRef = '/contact'
-    weight = 5
-
-[[menus.main]]
-    name = 'Services'
-    pageRef = '/services'
+    name = 'Blog'
+    pageRef = '/blog'
     weight = 2
+
+# [[menus.main]]
+#     name = 'Services'
+#     pageRef = '/services'
+#     weight = 2
 
 [caches]
   [caches.images]

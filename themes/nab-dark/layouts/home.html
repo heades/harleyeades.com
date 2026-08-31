@@ -1,30 +1,9 @@
 {{ define "main" }}
 
 <div class="home-container">  
-  <div class="home-left">
     <div class="description-container">
-      <p class="description-text">North Augusta Barbell is the leading Olympic
-      Weightlifting club in the CSRA.</p>
-      <a href="/contact" class="large-button">Get in Touch</a>        
-      <a href="https://northaugustabarbell.substack.com/embed" class="large-button subscribe-btn">Subscribe to our Newsletter</a>      
-    </div>
-  </div>
-  <div class="home-right">    
-    <div class="services-container"> 
-      <p class="services-caption">Services</p>
-      <ul class="services">   
-        {{ range first 4 (where .Site.RegularPages "Section" "services").ByWeight }}   
-          <li>
-            <a href="/services#{{ .File.BaseFileName }}">
-              <div class="service-card {{ .Params.card }}">
-                <h2>{{ .Title | safeHTML }}</h2>
-              </div>
-            </a>
-          </li>
-        {{ end }}
-      </ul>
-    </div>
-  </div>  
+      TODO
+    </div>  
 </div>
 
 {{ end }}
