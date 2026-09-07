@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 @font-face {
   font-family: 'halyard-micro-bold';
   /* Ensure the file is at static/fonts/halyard-micro-bold.otf */
@@ -23,6 +25,7 @@
   --screen-breakpoint: 768px;
 }
 
+/* 
 * {
   box-sizing: border-box;
 }
@@ -71,7 +74,7 @@ a {
 }
 
 .container > * {
-  /* border: 1px solid rgb(255, 255, 255); */
+  /* border: 1px solid rgb(255, 255, 255); 
   padding: 10px;
   grid-column: col-start / span 12;
 }
@@ -132,7 +135,7 @@ a {
 } 
 
 .subtitle {    
-  font-size: 0.70rem; /* 11.5pt */        
+  font-size: 0.70rem; /* 11.5pt         
   margin: 0;  
 }
 
@@ -169,7 +172,7 @@ a {
 .footer h3 {
   padding: 0;
   margin: 0;
-  font-size: 1.08rem /* 13pt */;
+  font-size: 1.08rem /* 13pt ;
 }
 
 .footer .address {
@@ -187,10 +190,10 @@ a {
 
 .hours .hours-container {
   display: grid;
-  /* Column 1: width based on content, right-aligned */
-  /* Column 2: width based on content, left-aligned */
+  /* Column 1: width based on content, right-aligned 
+  /* Column 2: width based on content, left-aligned 
   grid-template-columns: max-content max-content;
-  gap: 3px 5px; /* Vertical gap, Horizontal gap */
+  gap: 3px 5px; /* Vertical gap, Horizontal gap 
   align-items: center;
 }
 
@@ -207,7 +210,7 @@ a {
 }
 
 
-/* Tablets, Laptops, and Desktops (768px and up) */
+/* Tablets, Laptops, and Desktops (768px and up) 
 @media (min-width: 1024px) {  
   .navbar-title {
     font-size: 2rem;         
@@ -220,4 +223,4 @@ a {
   .footer {  
     flex-direction: row;
   }
-}
+} */

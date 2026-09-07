@@ -1,12 +1,12 @@
 baseURL = 'localhost'
-title = 'Wor⋊er Bee'
+title = 'Harley Eades'
 theme = 'nab-dark'
 
 [params]
-subtitle = 'TODO'
+subtitle = 'USAW Olympic Weightlifting Coach'
 email = 'harley.eades@gmail.com'
-copyright = '2026-2027 WKB'
-instagram = 'todo'
+copyright = '2026-2027 Harley Eades III'
+instagram = 'harleyeadeslifts'
 
 [menus]
   [[menus.main]]
@@ -24,11 +24,13 @@ instagram = 'todo'
     pageRef = '/blog'
     weight = 2
 
-# [[menus.main]]
-#     name = 'Services'
-#     pageRef = '/services'
-#     weight = 2
-
 [caches]
   [caches.images]
     dir = ':cacheDir/images'
+
+[security.exec]
+  allow = ["^(dart-)?sass$", "^go$", "^git$", "^node$", "^postcss$", "^tailwindcss$"]
+
+[build]
+  [buildStats]
+    enable = true

@@ -1,0 +1,16 @@
+{{ define "main" }}
+<div class="blog-container">
+    <h1 class="blog-title">Harley's Coaches Notes</h1>
+    <p>I like to write, because it helps me learn. Here I'll be writing about
+    things I'm learning, giving updates on my coaching, and anything else I
+    think of.</p>
+    <ul class="blog-post-list">
+        {{ range where site.RegularPages "Type" "blog" }}
+            <li id="{{ .File.BaseFileName }}" class="blog-post-list-item">
+                <a href="{{ .RelPermalink }}" class="post-title">{{ .Title | safeHTML }}</h2>
+                <p class="post-date">{{ .Date | safeHTML }}</p>
+            </li>
+        {{ end }}
+    </ul>
+</div>
+{{ end }}

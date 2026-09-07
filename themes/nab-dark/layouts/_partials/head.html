@@ -2,27 +2,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ printf "%s | %s" .Title site.Title }}{{ end }}</title>
 
-<!-- CSS -->
-{{ partialCached "head/css.html" . }}
-
-{{ $cssName := "" }}
-{{ if .IsHome }}
-  {{ $cssName = "home" }}
-{{ else }}
-  {{ $cssName = .Section }}
-{{ end }}
-
-{{ $cssPath := printf "css/%s.css" $cssName }}
-
-{{ $css := resources.Get $cssPath }}
-
-{{ if $css }}
-  {{- if hugo.IsDevelopment }}    
-    <link rel="stylesheet" href="{{ $css.RelPermalink }}">
-  {{- else }}
-    {{ $css = $css | minify | fingerprint }}
-    <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
-  {{- end }}
+{{ with resources.Get "css/main.css" }}
+  {{ $tailwindCSS := . | css.TailwindCSS }}
+  <link rel="stylesheet" href="{{ $tailwindCSS.RelPermalink }}">
 {{ end }}
 
 <!-- JS -->
