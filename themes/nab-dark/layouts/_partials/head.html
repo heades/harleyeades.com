@@ -3,8 +3,19 @@
 <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ printf "%s | %s" .Title site.Title }}{{ end }}</title>
 
 {{ with resources.Get "css/main.css" }}
-  {{ $tailwindCSS := . | css.TailwindCSS }}
-  <link rel="stylesheet" href="{{ $tailwindCSS.RelPermalink }}">
+  {{ $opts := dict 
+      "minify" (cond hugo.IsDevelopment false true)
+      "sourcecMap" (cond hugo.IsDevelopment "linked" "none")
+  }}
+  {{ with . | css.Build $opts }}
+    {{ if hugo.IsDevelopment }}
+      <link rel="stylesheet" href="{{ .RelPermalink }}">
+    {{ else }}
+      {{ with . | fingerprint }}
+        <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
+      {{ end }}
+    {{ end }}
+  {{ end }}
 {{ end }}
 
 <!-- JS -->

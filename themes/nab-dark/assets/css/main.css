@@ -1,31 +1,80 @@
-@import "tailwindcss";
-
 @font-face {
-  font-family: 'halyard-micro-bold';
-  /* Ensure the file is at static/fonts/halyard-micro-bold.otf */
-  src: url('/fonts/halyard-micro-bold.otf') format('opentype');
-  font-weight: bold;
-  font-style: normal;
+    font-family: "Encode Sans Expanded";
+    src: url("../fonts/EncodeSansExpanded-Thin.ttf") format("truetype");
+    font-weight: 100;
+    font-style: normal;
 }
 
 @font-face {
-  font-family: 'Montserrat-Regular';
-  src: url('/fonts/Montserrat-Regular.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
+    font-family: "Encode Sans Expanded";
+    src: url("../fonts/EncodeSansExpanded-ExtraLight.ttf") format("truetype");
+    font-weight: 200;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Encode Sans Expanded";
+    src: url("../fonts/EncodeSansExpanded-Light.ttf") format("truetype");
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Encode Sans Expanded";
+    src: url("../fonts/EncodeSansExpanded-Regular.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Encode Sans Expanded";
+    src: url("../fonts/EncodeSansExpanded-Medium.ttf") format("truetype");
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Encode Sans Expanded";
+    src: url("../fonts/EncodeSansExpanded-SemiBold.ttf") format("truetype");
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Encode Sans Expanded";
+    src: url("../fonts/EncodeSansExpanded-Bold.ttf") format("truetype");
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Encode Sans Expanded";
+    src: url("../fonts/EncodeSansExpanded-ExtraBold.ttf") format("truetype");
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Encode Sans Expanded";
+    src: url("../fonts/EncodeSansExpanded-Black.ttf") format("truetype");
+    font-weight: 900;
+    font-style: normal;
 }
 
 :root {
   --bg-color: #000000;
+  --bg-secondary-color: #ffffff;
   --card-bg: #121212;
   --text-color: #ffffff;
+  --text-secondary-color: hsl(0,0%,0%);
   --text-muted: #cbc9c9;
-  --border-color: #333333;
-  --button-color: #747474; 
+  --border-color: #ffffff;
+  --button-color: hsl(0,0%,40%);
+  --blog-button-color: hsl(0,0%,24%);
+  --button-secondary-color: hsl(0,0%,100%);
   --screen-breakpoint: 768px;
 }
 
-/* 
 * {
   box-sizing: border-box;
 }
@@ -34,23 +83,9 @@ body {
   background-color: var(--bg-color);
   color: var(--text-color);
   margin: 0;
-  font-family: 'Montserrat-Regular', system-ui, -apple-system, sans-serif;
+  padding: 0;
   font-size: large;
-}
-
-h1 {
-  font-family: 'halyard-micro-bold', sans-serif;
-  text-transform: uppercase;
-}
-
-h2 {
-  font-family: 'halyard-micro-bold', sans-serif;
-  text-transform: uppercase;
-}
-
-h3 {
-  font-family: 'halyard-micro-bold', sans-serif;
-  text-transform: uppercase;
+  font-family: "Encode Sans Expanded", Arial, Helvetica, sans-serif;
 }
 
 a {
@@ -74,8 +109,8 @@ a {
 }
 
 .container > * {
-  /* border: 1px solid rgb(255, 255, 255); 
-  padding: 10px;
+  /* border: 1px solid rgb(255, 255, 255); */
+  padding: 0px;
   grid-column: col-start / span 12;
 }
 
@@ -104,22 +139,23 @@ a {
   color: var(--text-color);
   background-color: var(--button-color);
   text-decoration: none;
-  font-size: 1.3rem;
+  font-size: 1.0rem;
   font-weight: 500;
   transition: color 0.2s;
-  width: 105px;
+  width: 135px;
   text-align: center;
-  margin: 0;
-  padding: 0;
+  margin: 0;  
+  border-radius: 8px;
 }
 
-.navbar-menu li a:hover {
-  color: var(--text-muted);
+.navbar-menu li a:hover {  
+  background-color: var(--bg-color);
+  border: 1px var(--border-color) solid;
 }
 
 .header {
   grid-area: "header";
-  border-bottom: 1px solid rgb(255, 255, 255);
+  /* border-bottom: 1px solid rgb(255, 255, 255); */
 }
 
 .navbar-title-container {
@@ -135,7 +171,7 @@ a {
 } 
 
 .subtitle {    
-  font-size: 0.70rem; /* 11.5pt         
+  font-size: 0.70rem; /* 11.5pt */      
   margin: 0;  
 }
 
@@ -167,12 +203,13 @@ a {
   padding-right: 4px;
   padding-top: 5px;
   gap: 25px;
+  font-size: small;
 }
 
 .footer h3 {
   padding: 0;
   margin: 0;
-  font-size: 1.08rem /* 13pt ;
+  font-size: 1.08rem /* 13pt */;
 }
 
 .footer .address {
@@ -190,10 +227,10 @@ a {
 
 .hours .hours-container {
   display: grid;
-  /* Column 1: width based on content, right-aligned 
-  /* Column 2: width based on content, left-aligned 
+  /* Column 1: width based on content, right-aligned */
+  /* Column 2: width based on content, left-aligned */
   grid-template-columns: max-content max-content;
-  gap: 3px 5px; /* Vertical gap, Horizontal gap 
+  gap: 3px 5px; /* Vertical gap, Horizontal gap */
   align-items: center;
 }
 
@@ -209,18 +246,155 @@ a {
   flex: 1;
 }
 
+.blog-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-/* Tablets, Laptops, and Desktops (768px and up) 
-@media (min-width: 1024px) {  
+.blog-description {
+  max-width: 33rem;
+}
+
+.blog-frontmatter {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  align-items: start;
+}
+
+.blog-frontmatter ul {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.blog-frontmatter ul li {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  background-color: var(--blog-button-color);
+  border:  1px #ffffff solid;
+  border-radius: 8px;
+  padding: 5.5px;
+  padding-left: 8px;
+}
+
+.blog-frontmatter li:hover {  
+  background-color: var(--bg-color);
+}
+
+.blog-frontmatter ul li:nth-child(odd) {
+  background-color: var(--button-secondary-color);
+  color: var(--text-secondary-color);
+}
+
+.blog-frontmatter li:nth-child(odd) a {  
+  color: var(--text-secondary-color);
+}
+
+.blog-frontmatter li:nth-child(odd):hover {  
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+.blog-frontmatter li:nth-child(odd):hover a {  
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+.blog-post-list-instructions {
+  margin: 0;
+  margin-bottom: 5px;
+  font-size: medium;
+}
+
+.blog-frontmatter a {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.5rem;
+  text-decoration: none;
+}
+
+.blog-post-title {    
+  margin: 0;
+  padding: 0;
+}
+
+.blog-post-date {
+  margin: 0;
+  padding: 0;
+  font-size: 0.8rem;
+}
+
+/* Home */
+.home-container {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 10pt;
+    padding: 10px;
+    margin: 0;
+    width: 100%;  
+}
+
+.home-left {
+    display: flex;
+    align-items: center;  
+    justify-content: center;  
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.home-left img {
+  width: 80%;
+  padding: 0;
+  margin: 0;
+  border-radius: 8px;
+}
+
+.description-container {
+    align-items: center;
+    justify-content: center;
+    padding-right: 5px;
+    margin: 0; 
+    padding: 0;  
+    width: 100%;
+    font-size: medium;
+}
+
+.description-container p {
+    padding: 0px;
+    margin: 0;
+}
+
+
+/* Tablets, Laptops, and Desktops (768px and up) */
+@media (min-width: 500px) {  
   .navbar-title {
     font-size: 2rem;         
   } 
 
   .subtitle {
-    font-size: 1.2rem;                
+    font-size: small;                
   }   
 
   .footer {  
+    flex-direction: row;    
+  }
+
+  .home-container {
     flex-direction: row;
   }
-} */
+
+  .description-container {
+    align-content: center;
+  }
+
+  .home-left img {
+    width: 60%;
+  }
+}

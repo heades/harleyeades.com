@@ -1,8 +1,8 @@
 .home-container {
+    display: flex;
     flex-direction: column;   
-    /* border: 1px solid rgb(255, 255, 255); */
     padding: 0px;
-    grid-column: col-start / span 12;
+    width: 100%;    
 }
 
 .home-left {
@@ -29,8 +29,9 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    text-align: center;
     width: 100%;  
-    height: 100%;  
+    border: 1px solid #fff;
 }
 
 .description-text {

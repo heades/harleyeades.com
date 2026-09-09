@@ -13,16 +13,16 @@ instagram = 'harleyeadeslifts'
     name = 'Home'
     pageRef = '/'
     weight = 1
-
-  [[menus.main]]
-    name = 'About'
-    pageRef = '/about'
-    weight = 3
   
   [[menus.main]]
     name = 'Blog'
     pageRef = '/blog'
     weight = 2
+  
+  [[menus.main]]
+    name = 'Academic Site'
+    url = "https://hde.design"
+    weight = 3
 
 [caches]
   [caches.images]
