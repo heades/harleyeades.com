@@ -3,13 +3,15 @@ title = 'Harley Eades'
 theme = 'nab-dark'
 
 [params]
-subtitle = 'USAW Olympic Weightlifting Coach'
 email = 'harley.eades@gmail.com'
 copyright = '2026-2027 Harley Eades III'
 instagram = 'harleyeadeslifts'
+coaching_subtitle = 'USAW Olympic Weightlifting Coach'
+work_subtitle = 'Associate Professor of Computer Science'
 
 [menus]
   [[menus.main]]
+    identifier = 'home'
     name = 'Home'
     pageRef = '/'
     weight = 1

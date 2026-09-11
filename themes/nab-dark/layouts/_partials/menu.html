@@ -10,12 +10,15 @@ Renders a menu for the given menu ID.
 {{- $page := .page }}
 {{- $menuID := .menuID }}
 
-{{- with index site.Menus $menuID }}
+{{- with index site.Menus $menuID  }}
   <nav class="navbar">
     <div class="navbar-title-container">
-      <h1 class="navbar-title">{{ site.Title }}</h1>
-      <h3 class="subtitle">{{ site.Params.Subtitle }}</h3>
-      
+      <h1 class="navbar-title">{{ site.Title }}</h1>              
+      {{ if eq $page.RelPermalink "/blog/" }}
+        <h3 class="subtitle">{{ site.Params.Coaching_Subtitle }}</h3>
+      {{ else if eq $page.RelPermalink "/work/" }}
+        <h3 class="subtitle">{{ site.Params.Coaching.Subtitle }}</h3>
+      {{ end }}
     </div>
     <div class="navbar-container">
       <ul class="navbar-menu">
