@@ -1,1 +1,14 @@
-{{ partial "menu.html" (dict "menuID" "main" "page" .) }}
+{{- $section  := .section  }}
+{{- $title    := .title    }}
+{{- $subtitle := .subtitle }}
+{{- $menuID   := .menuID   }}
+
+<nav class="navbar">
+    <div class="navbar-title-container">
+        <h1 class="navbar-title">{{ $title }}</h1>              
+        <h3 class="subtitle">{{ $subtitle }}</h3>
+    </div>
+    <div class="navbar-container">
+        {{ partial "menu.html" (dict "menuID" $menuID "page" $section) }}
+    </div>
+</nav>  

@@ -1,0 +1,14 @@
+{{ define "header" }}
+    {{ partial "header.html" (dict "title"    site.Title 
+                                   "subtitle" "Research Professor in Computer Science" 
+                                   "menuID"   "academic" 
+                                   "section"  .) }}
+{{ end }}
+
+{{ define "main" }}
+    {{ .Content }}
+{{ end }}
+
+{{ define "footer" }}
+  {{ partial "footer.html" . }}
+{{ end }}

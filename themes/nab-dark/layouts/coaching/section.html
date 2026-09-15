@@ -1,0 +1,11 @@
+{{ define "header" }}
+    {{ partial "header.html" (dict "title" site.Title "subtitle" "USAW Olympic Weightlifting Coach" "menuID" "coaching" "section" .) }}
+{{ end }}
+
+{{ define "main" }}
+    {{ .Content }}
+{{ end }}
+
+{{ define "footer" }}
+  {{ partial "footer.html" . }}
+{{ end }}

@@ -10,23 +10,11 @@ Renders a menu for the given menu ID.
 {{- $page := .page }}
 {{- $menuID := .menuID }}
 
-{{- with index site.Menus $menuID  }}
-  <nav class="navbar">
-    <div class="navbar-title-container">
-      <h1 class="navbar-title">{{ site.Title }}</h1>              
-      {{ if eq $page.RelPermalink "/blog/" }}
-        <h3 class="subtitle">{{ site.Params.Coaching_Subtitle }}</h3>
-      {{ else if eq $page.RelPermalink "/work/" }}
-        <h3 class="subtitle">{{ site.Params.Coaching.Subtitle }}</h3>
-      {{ end }}
-    </div>
-    <div class="navbar-container">
+      {{- with index site.Menus $menuID  }}
       <ul class="navbar-menu">
         {{- partial "inline/menu/walk.html" (dict "page" $page "menuEntries" .) }}
       </ul>
-    </div>
-  </nav>  
-{{- end }}
+      {{- end }}
 
 {{- define "_partials/inline/menu/walk.html" }}
   {{- $page := .page }}

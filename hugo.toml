@@ -11,20 +11,29 @@ work_subtitle = 'Associate Professor of Computer Science'
 
 [menus]
   [[menus.main]]
-    identifier = 'home'
     name = 'Home'
     pageRef = '/'
     weight = 1
   
   [[menus.main]]
-    name = 'Blog'
-    pageRef = '/blog'
+    name = 'Coaching'
+    pageRef = '/coaching'
     weight = 2
   
   [[menus.main]]
-    name = 'Academic Site'
-    url = "https://hde.design"
+    name = 'Academic'
+    url = "/academic"
     weight = 3
+  
+  [[menus.academic]]
+    name = 'Home'
+    pageRef = '/'
+    weight = 1
+
+  [[menus.coaching]]
+    name = 'Home'
+    pageRef = '/'
+    weight = 1
 
 [caches]
   [caches.images]

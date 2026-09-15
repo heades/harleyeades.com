@@ -1,3 +1,6 @@
+{{ define "header" }}
+  {{ partial "header.html" (dict "title" site.Title "subtitle" "" "menuID" "main" "section" .) }}
+{{ end }}
 {{ define "main" }}
   <h1>{{ .Title }}</h1>
 
