@@ -398,3 +398,25 @@ a {
     width: 60%;
   }
 }
+
+/* Home */
+.academic-home-main {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    gap: 0px;
+    margin: 0;
+    width: 100%;  
+}
+
+.academic-home-main p {
+  margin: 10px;
+}
+
+.academic-home-main h4 {
+  margin: 10px;
+}
+
+.academic-home-main ul {
+  margin: 0px;
+}
