@@ -23,7 +23,7 @@ work_subtitle = 'Associate Professor of Computer Science'
   [[menus.main]]
     name = 'Academic'
     url = "/academic"
-    weight = 3
+    weight = 2
   
   [[menus.academic]]
     name = 'Home'
@@ -33,7 +33,7 @@ work_subtitle = 'Associate Professor of Computer Science'
   [[menus.coaching]]
     name = 'Home'
     pageRef = '/'
-    weight = 1
+    weight = 3
 
 [caches]
   [caches.images]

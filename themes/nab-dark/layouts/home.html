@@ -1,13 +1,12 @@
-{{ define "header" }}
-  {{ partial "header.html" (dict "title" site.Title "subtitle" "" "menuID" "main" "section" .) }}
-{{ end }}
 
 {{ define "main" }}
-<div class="home-container">  
-    <p>
-      {{ .Content }}
-    </p>
-</div>
+  <div class="home-container">
+    {{ partial "header.html" 
+        (dict "title"    site.Title 
+              "subtitle" "Academic, Olympic Weightlifting Coach, Designer" 
+              "menuID"   "main" 
+              "section"  .) }}
+  </div>
 {{ end }}
 
 {{ define "footer" }}
