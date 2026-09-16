@@ -10,10 +10,8 @@ Renders a menu for the given menu ID.
 {{- $page := .page }}
 {{- $menuID := .menuID }}
 
-      {{- with index site.Menus $menuID  }}
-      <ul class="navbar-menu">
-        {{- partial "inline/menu/walk.html" (dict "page" $page "menuEntries" .) }}
-      </ul>
+      {{- with index site.Menus $menuID  }}      
+        {{- partial "inline/menu/walk.html" (dict "page" $page "menuEntries" .) }}      
       {{- end }}
 
 {{- define "_partials/inline/menu/walk.html" }}

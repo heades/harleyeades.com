@@ -18,7 +18,7 @@ information, and
 
 - Designing new systems for remote coaching of athletic training: from
   novice to elite athletes.
-- <a href="https://granule-project.github.io/">The Granule Project</a>
+- [The Granule Project](https://granule-project.github.io/)
   where I am studying graded logics, models, and type theories.
 
 #### Research interests

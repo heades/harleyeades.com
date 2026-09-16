@@ -1,0 +1,28 @@
+{{ define "header" }}
+    {{ partial "header.html" (dict "title"    site.Title 
+                                   "subtitle" "Research Professor in Computer Science" 
+                                   "menuID"   "academic" 
+                                   "section"  .) }}
+{{ end }}
+
+{{ define "main" }}
+    <div class="academic-activity-container">
+        <div>
+            <p>My scholarly activity feed.</p>
+            <ul>
+                {{ range (where site.RegularPages "Type" "academic").ByDate.Reverse }}
+                    <li id="{{ .File.BaseFileName }}">
+                        <a href="{{ .RelPermalink }}">
+                            {{ .Title | safeHTML }}
+                        </a>                    
+                        <p class="blog-post-date">{{ .Date | safeHTML }}</p>
+                    </li>
+                {{ end }}
+            </ul>
+        </div>
+    </div>
+{{ end }}
+
+{{ define "footer" }}
+  {{ partial "footer.html" . }}
+{{ end }}

@@ -6,12 +6,11 @@ theme = 'nab-dark'
 email = 'harley.eades@gmail.com'
 copyright = '2026-2027 Harley Eades III'
 instagram = 'harleyeadeslifts'
-coaching_subtitle = 'USAW Olympic Weightlifting Coach'
-work_subtitle = 'Associate Professor of Computer Science'
+subtitle = 'Academic, Olympic Weightlifting Coach, Designer'
 
 [menus]
   [[menus.main]]
-    name = 'Home'
+    name = 'Menu'
     pageRef = '/'
     weight = 1
   
@@ -24,16 +23,30 @@ work_subtitle = 'Associate Professor of Computer Science'
     name = 'Academic'
     url = "/academic"
     weight = 2
-  
+
+  [[menus.academic]]
+    name = 'Menu'
+    pageRef = '/'
+    weight = 1
+
   [[menus.academic]]
     name = 'Home'
+    pageRef = '/academic'
+    weight = 2
+
+  [[menus.academic]]
+    name = 'Activity'
+    pageRef = 'activity/'
+    weight = 3
+  [[menus.coaching]]
+    name = 'Menu'
     pageRef = '/'
     weight = 1
 
   [[menus.coaching]]
     name = 'Home'
-    pageRef = '/'
-    weight = 3
+    pageRef = '/coaching'
+    weight = 2
 
 [caches]
   [caches.images]

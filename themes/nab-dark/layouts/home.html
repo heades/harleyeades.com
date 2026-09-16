@@ -3,9 +3,10 @@
   <div class="home-container">
     {{ partial "header.html" 
         (dict "title"    site.Title 
-              "subtitle" "Academic, Olympic Weightlifting Coach, Designer" 
+              "subtitle" site.Params.Subtitle
               "menuID"   "main" 
               "section"  .) }}
+    <p>Choose the site that best fits your interest.</p>
   </div>
 {{ end }}
 
