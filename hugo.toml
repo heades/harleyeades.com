@@ -38,6 +38,7 @@ subtitle = 'Academic, Olympic Weightlifting Coach, Designer'
     name = 'Activity'
     pageRef = 'activity/'
     weight = 3
+    
   [[menus.coaching]]
     name = 'Menu'
     pageRef = '/'

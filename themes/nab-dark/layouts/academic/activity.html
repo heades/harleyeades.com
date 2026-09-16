@@ -7,15 +7,36 @@
 
 {{ define "main" }}
     <div class="academic-activity-container">
-        <div>
+        <div class="academic-activity-content">
             <p>My scholarly activity feed.</p>
-            <ul>
+            <ul class="academic-activity-feed">
                 {{ range (where site.RegularPages "Type" "academic").ByDate.Reverse }}
-                    <li id="{{ .File.BaseFileName }}">
-                        <a href="{{ .RelPermalink }}">
-                            {{ .Title | safeHTML }}
-                        </a>                    
-                        <p class="blog-post-date">{{ .Date | safeHTML }}</p>
+                    <li class="academic-activity-feed-item" id="{{ .File.BaseFileName }}">
+                        <h4>{{ .Title | safeHTML }}</h4>  
+                        <div class="academic-activity-fields">
+                            <div class="academic-activity-authors">
+                                <span>Authors:</span>
+                                <span>{{ delimit .Params.activity.authors ", " }}</span>
+                            </div>
+                            <div class="academic-activity-venue">
+                                <span>Venue:</span>
+                                <p>{{ .Params.activity.note}}</p>
+                            </div>                            
+                            <div class="academic-activity-meta">
+                            <span>Published: {{ .Date | dateFormat "02-01-2006" }}</span> 
+                            {{ with .Params.activity.resource }}
+                                {{ if eq .type "doi"}}
+                                    <a href="https://doi.org/{{.value}}">doi: {{.value}}</a>
+                                {{ end }}
+                            {{ end }}
+                            <ul class="academic-activity-tags">
+                                <li class="academic-activity-tag">{{.Params.activity.type}}</li>
+                                {{ range .Params.activity.tags}}  
+                                    <li class="academic-activity-tag">{{.}}</li>
+                                {{ end }}                          
+                            </ul>
+                            </div>
+                        </div>  
                     </li>
                 {{ end }}
             </ul>

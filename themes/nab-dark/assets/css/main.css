@@ -85,10 +85,7 @@ body {
   margin: 0;
   padding: 0;
   font-size: large;
-  font-family: "Encode Sans Expanded", Arial, Helvetica, sans-serif;
-  display: flex;
-  flex-direction: column;
-  min-height: 100dvh;
+  font-family: "Encode Sans Expanded", Arial, Helvetica, sans-serif;  
 }
 
 a {
@@ -140,7 +137,7 @@ a {
   font-size: 1.0rem;
   font-weight: 500;
   transition: color 0.2s;
-  width: 135px;
+  width: 100px;
   text-align: center;
   margin: 0;  
   border-radius: 8px;
@@ -392,11 +389,11 @@ a {
 .academic-home-container {
     display: flex;
     flex-direction: column;
+    align-items: center;
     padding: 15px;
     gap: 0px;
     margin: 0;
-    width: 100%;   
-    min-height: 100dvh;   
+    width: 100%;    
 }
 
 .academic-home-main p {
@@ -415,6 +412,89 @@ a {
   display: flex;  
   flex-direction: column;
   align-items: center;
-  min-height: 100dvh;
-  width: 100%;
+  padding: 5px;
+  min-height: 100%;
+}
+
+.academic-activity-feed {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding-right: 10px;  
+}
+
+.academic-activity-feed-item {
+  display: flex;
+  flex-direction: column;
+  font-size: medium;  
+  border: 1px solid;
+  border-radius: 8px;
+  padding: 5px;
+  max-width: 300pt;
+}
+
+.academic-activity-feed-item a {  
+  font-size: small;
+  
+}
+
+.academic-activity-feed-item h4 {  
+  font-size: small;
+  padding: 0;
+  margin: 0;
+}
+
+.academic-activity-fields {
+  display: flex;
+  flex-direction: column;
+  padding-left: 15px;
+  gap: 5px;
+}
+
+.academic-activity-authors {
+  display: flex;
+  gap: 5px;  
+  font-size: small;
+}
+
+.academic-activity-venue {
+  display: flex;
+  flex-direction: column;
+  font-size: small;
+  margin: 0; 
+}
+
+.academic-activity-venue p {
+  margin: 0;
+  padding-left: 10px;
+  font-size: small;
+}
+
+.academic-activity-meta {
+  display: flex;
+  flex-direction: column;
+  font-size: small;
+  padding-top: 5px;
+  gap: 5px;
+}
+
+.academic-activity-tags {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 5px;
+  padding: 0;
+  gap: 10px;
+  font-size: small;
+}
+
+.academic-activity-tag {
+  display: flex;
+  font-size: small;
+  border: 1px solid;
+  border-radius: 8px;
+  padding: 2px;
+  padding-right: 4px;
+  padding-left: 4px;
+  font-size: x-small;
 }
