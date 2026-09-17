@@ -323,7 +323,7 @@ a {
 .home-content p {
   display: flex;
   justify-content: center;
-  
+  align-content: center;
 }
 
 @media (max-width: 390px) {
@@ -408,7 +408,7 @@ a {
   gap: 5px;
 }
 
-.academic-activity-authors {
+.academic-activity-field {
   display: flex;
   gap: 5px;  
   font-size: small;
