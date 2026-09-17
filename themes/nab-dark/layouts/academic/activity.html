@@ -1,12 +1,11 @@
-{{ define "header" }}
-    {{ partial "header.html" (dict "title"    site.Title 
-                                   "subtitle" "Research Professor in Computer Science" 
-                                   "menuID"   "academic" 
-                                   "section"  .) }}
-{{ end }}
-
 {{ define "main" }}
-    <div class="academic-activity-container">
+    <header class="header">
+        {{ partial "header.html" (dict "title"    site.Title 
+                                       "subtitle" "Research Professor in Computer Science" 
+                                       "menuID"   "academic" 
+                                       "section"  .) }}
+    </header>
+    <main class="academic-activity-container">
         <div class="academic-activity-content">
             <p>My scholarly activity feed.</p>
             <ul class="academic-activity-feed">
@@ -41,9 +40,9 @@
                 {{ end }}
             </ul>
         </div>
-    </div>
-{{ end }}
-
-{{ define "footer" }}
-  {{ partial "footer.html" . }}
+    </main>
+    <!-- Footer -->
+    <footer class="footer">
+      {{ partial "footer.html" . }}
+    </footer> 
 {{ end }}

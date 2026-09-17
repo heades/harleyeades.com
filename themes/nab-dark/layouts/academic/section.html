@@ -1,18 +1,18 @@
-{{ define "header" }}
-    {{ partial "header.html" (dict "title"    site.Title 
-                                   "subtitle" "Research Professor in Computer Science" 
-                                   "menuID"   "academic" 
-                                   "section"  .) }}
-{{ end }}
-
 {{ define "main" }}
-    <div class="academic-home-container">
+    <header class="header">
+        {{ partial "header.html" (dict "title"    site.Title 
+                                       "subtitle" "Research Professor in Computer Science" 
+                                       "menuID"   "academic" 
+                                       "section"  .) }}
+    </header>
+    <main class="academic-home-container">
         <div class="academic-home-content">
             {{ .Content }}
         </div>
-    </div>
+    </main>
+    <!-- Footer -->
+    <footer class="footer">
+      {{ partial "footer.html" . }}
+    </footer>   
 {{ end }}
 
-{{ define "footer" }}
-  {{ partial "footer.html" . }}
-{{ end }}

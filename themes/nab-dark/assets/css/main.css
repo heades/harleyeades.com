@@ -102,13 +102,6 @@ a {
   border: 1px solid rgb(255, 255, 255);
 }
 
-.container {
-  display: flex;
-  flex-direction: column;
-  min-height: 100dvh;
-  justify-content: space-between;
-}
-
 .navbar {  
   display: flex;
   flex-direction: column;
@@ -194,27 +187,10 @@ a {
   align-items: center;
   border-top: 1px solid rgb(255, 255, 255);
   font-size: small;
+  width: 100%;
   min-height: 30px;
-  padding: 10px;
-}
-
-.footer h3 {
-  padding: 0;
-  margin: 0;
-  font-size: 1.08rem /* 13pt */;
-}
-
-.footer .address {
-  flex: 1;
-}
-
-.footer .address p {
-  padding: 0;
-  margin: 0;
-}
-
-.footer .hours {
-  flex: 1;  
+  margin-top: 10px;  
+  padding: 10px;  
 }
 
 .hours .hours-container {
@@ -323,58 +299,39 @@ a {
 }
 
 /* Home */
-.home-container {
+.home-container {    
     display: flex;
     flex-direction: column;
-    justify-content: center; 
-    align-content: center;   
-    justify-items: center;
-    gap: 10pt;
-    padding: 10px;
-    margin: 0;
-    width: 100%;  
-}
-
-.home-container p {
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  margin: 0;
-  padding: 0;
-}
-
-.home-left {
-    display: flex;
-    align-items: center;  
-    justify-content: center;  
-    margin: 0;
-    padding: 0;
-    width: 100%;
-}
-
-.home-left img {
-  width: 80%;
-  padding: 0;
-  margin: 0;
-  border-radius: 8px;
-}
-
-.description-container {
-    align-items: center;
-    justify-content: center;
-    padding-right: 5px;
-    margin: 0; 
-    padding: 0;  
-    width: 100%;
-    font-size: medium;
-}
-
-.description-container p {
+    justify-content: space-between;
     padding: 0px;
     margin: 0;
+    width: 100%; 
+    min-height: 100dvh; 
 }
 
-/* Tablets, Laptops, and Desktops (768px and up) */
+.home-content {
+    justify-content: center;  
+    align-content: center;  
+}
+
+.home-content-menu-descr {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.home-content p {
+  display: flex;
+  justify-content: center;
+  
+}
+
+@media (max-width: 390px) {
+  .home-content p {
+    width: 250px;
+  }
+}
+
 @media (min-width: 500px) {  
   .navbar-title {
     font-size:xx-large;         
