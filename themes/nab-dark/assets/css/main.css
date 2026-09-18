@@ -378,6 +378,7 @@ a {
   flex-direction: column;
   margin: 0;
   padding-right: 10px;  
+  gap: 20px;
 }
 
 .academic-activity-feed-item {

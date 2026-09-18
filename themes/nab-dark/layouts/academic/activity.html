@@ -12,27 +12,43 @@
                 {{ range (where site.RegularPages "Type" "academic").ByDate.Reverse }}
                     <li class="academic-activity-feed-item" id="{{ .File.BaseFileName }}">                        
                         <h4>{{ .Title | safeHTML }}</h4>
-                        <ul class="academic-activity-fields">                                                       
-                                <li class="academic-activity-field">
-                                    <span>authors:</span>
-                                    <span>{{ delimit .Params.activity.authors ", " }}</span>
-                                </li>                                
-                                <li class="academic-activity-field">
-                                {{ with .Params.activity.resource }}
-                                    {{ if eq .type "doi"}}
-                                        doi: <a href="https://doi.org/{{.value}}">{{.value}}</a>
+                        {{if isset .Params "activity"}}
+                            <ul class="academic-activity-fields">  
+                                    {{ if isset .Params.activity "authors" }}                                             
+                                        <li class="academic-activity-field">
+                                            <span>authors:</span>
+                                            <span>{{ delimit .Params.activity.authors ", " }}</span>
+                                        </li>
                                     {{ end }}
-                                {{ end }}
-                                </li>
-                                <li class="academic-activity-field">
-                                <ul class="academic-activity-tags">
-                                    <li class="academic-activity-tag">{{.Params.activity.type}}</li>
-                                    {{ range .Params.activity.tags}}  
-                                        <li class="academic-activity-tag">{{.}}</li>
-                                    {{ end }}                          
-                                </ul>
-                                </li>
-                        </ul>  
+                                    {{ if isset .Params.activity "resources"}}
+                                        {{ range .Params.activity.resources }}
+                                            <li class="academic-activity-field">
+                                                {{ range . }}
+                                                    {{ $resource_type := index . "type" }}
+                                                    {{ $resource_type }}: 
+                                                    {{ if eq $resource_type "doi" }}
+                                                        <a href="https://doi.org/{{ index . "value"  }}">{{ index . "value"  }}</a> 
+                                                    {{ else }}
+                                                        <a href="{{ index . "value"  }}">{{ index . "value"  }}</a> 
+                                                    {{ end }}
+                                                {{ end }}                                            
+                                            </li>
+                                        {{ end }}
+                                    {{ end }}
+                                    <li class="academic-activity-field">                                
+                                        <ul class="academic-activity-tags">
+                                            {{if isset .Params.activity "type"}}
+                                                <li class="academic-activity-tag">{{.Params.activity.type}}</li>
+                                            {{ else }}
+                                                <li class="academic-activity-tag">TYPE placeholder</li>
+                                            {{ end }}
+                                            {{ range .Params.activity.tags}}  
+                                                <li class="academic-activity-tag">{{.}}</li>
+                                            {{ end }}                          
+                                        </ul>
+                                    </li>
+                            </ul>  
+                        {{ end }}
                     </li>
                 {{ end }}
             </ul>
