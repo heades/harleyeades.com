@@ -1,8 +1,20 @@
----
-title: "Dialectica Categories for the Lambek Calculus"
-year: 2018
-pos: 11
-venue: "Logical Foundations of Computer Science (LFCS)"
-slides: includes/talks/2018-LFCS/
-slides-pdf: includes/talks/2018-LFCS/talk.pdf
----
++++
+type = 'academic'
+layout = 'activity'
+title = "Dialectica Categories for the Lambek Calculus"
+date='2018-01-01'
+
+[activity]
+    type = "talk"
+    venue = '''
+    Logical Foundations of Computer Science (LFCS)
+    '''
+
+[activity.resources]
+[[activity.resources.slides]]
+    type = 'slides'
+    value = 'includes/talks/2018-LFCS/'
+[[activity.resources.pdf]]
+    type = 'pdf'
+    value = 'includes/talks/2018-LFCS/talk.pdf'
++++

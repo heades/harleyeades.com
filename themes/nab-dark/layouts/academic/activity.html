@@ -20,6 +20,12 @@
                                             <span>{{ delimit .Params.activity.authors ", " }}</span>
                                         </li>
                                     {{ end }}
+                                    {{ if isset .Params.activity "venue" }}                                             
+                                        <li class="academic-activity-field">
+                                            <span>venue:</span>
+                                            <span>{{ .Params.activity.venue }}</span>
+                                        </li>
+                                    {{ end }}
                                     {{ if isset .Params.activity "resources"}}
                                         {{ range .Params.activity.resources }}
                                             <li class="academic-activity-field">

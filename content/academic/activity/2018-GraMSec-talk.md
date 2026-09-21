@@ -1,8 +1,20 @@
----
-title: "On Linear Logic, Functional Programming, and Attack Trees"
-year: 2018
-pos: 14
-venue: "Fifth International Workshop on Graphical Models for Security"
-slides: includes/talks/GraMSec-2018
-slides-pdf: includes/talks/GraMSec-2018/talk.pdf
----
++++
+type = 'academic'
+layout = 'activity'
+title = "On Linear Logic, Functional Programming, and Attack Trees"
+date='2018-01-01'
+
+[activity]
+    type = "talk"
+    venue = '''
+    Fifth International Workshop on Graphical Models for Security
+    '''
+
+[activity.resources]
+[[activity.resources.slides]]
+    type = 'slides'
+    value = 'includes/talks/GraMSec-2018'
+[[activity.resources.pdf]]
+    type = 'pdf'
+    value = 'includes/talks/GraMSec-2018/talk.pdf'
++++

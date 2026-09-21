@@ -1,7 +1,21 @@
----
-title: "Hereditary Substitution for the λΔ-Calculus"
-year: 2014
-pos: 6
-venue: "Fifth International Workshop on Classical Logic and Computation (CL&C). Affiliated with the joint meeting of the Twenty-Third EACSL Annual Conference on Computer Science Logic (CSL) and the Twenty-Ninth Annual ACM/IEEE Symposium on Logic in Computer Science (LICS). Part of the Vienna Summer of Logic"
-slides: includes/talks/2014-CLC.pdf
----
++++
+type = 'academic'
+layout = 'activity'
+title = "Hereditary Substitution for the λΔ-Calculus"
+date='2014-01-01'
+
+[activity]
+    type = "talk"
+    venue = '''
+    Fifth International Workshop on Classical Logic and Computation (CL&C).
+    Affiliated with the joint meeting of the Twenty-Third EACSL Annual
+    Conference on Computer Science Logic (CSL) and the Twenty-Ninth Annual
+    ACM/IEEE Symposium on Logic in Computer Science (LICS). Part of the Vienna
+    Summer of Logic .
+    '''
+
+[activity.resources]
+[[activity.resources.slides]]
+    type = 'slides'
+    value = 'includes/talks/2014-CLC.pdf'
++++
