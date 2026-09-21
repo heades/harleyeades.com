@@ -1,12 +1,16 @@
----
-type: unpub
-authors:
-  - Harley Eades III
-title: "The Semantic Analysis of Advanced Programming Languages"
-note: "Ph.D. Thesis: The Unversity of Iowa"
-date: 2014-08-01
-year: 2014
-resource:
-  type: pdf
-  pdf-url: includes/pubs/thesis.pdf
----
++++
+type = 'academic'
+layout = 'activity'
+title = 'The Semantic Analysis of Advanced Programming Languages'
+date = '2014-08-01'
+
+[activity]
+  type = 'thesis'
+  authors = ['Harley Eades III']
+  note = 'Ph.D. Thesis: The University of Iowa'
+
+[activity.resources]
+[[activity.resources.pdf]]
+  type = 'pdf'
+  value = 'includes/pubs/thesis.pdf'
++++

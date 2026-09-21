@@ -2,7 +2,7 @@
 type = 'academic'
 layout = 'activity'
 title = 'The Graded Lambek Calculus'
-date = '2020-03-30'
+date = '2020-06-29'
 
 [activity]
   type = 'abstract'
@@ -12,7 +12,6 @@ date = '2020-03-30'
   Workshop on Linearity and the 4th Workshop on Trends in Linear Logic and
   Applications
   '''
-  date = '2020-06-29'
 
 [activity.resources]
 [[activity.resources.pdf]]
