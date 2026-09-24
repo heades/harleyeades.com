@@ -430,28 +430,12 @@ a {
 }
 
 .academic-activity-feed-item-other {
-  display: flex;
-  flex-direction: column;
-  font-size: medium;  
-  border: 1px solid;
-  border-radius: 8px;
-  padding: 5px;  
   background-color: #cbc9c9;
   color: var(--text-secondary-color);
   width: 100%;
 }
 
-.academic-activity-feed-item-date-odd {
-  border: 1px solid;
-  border-radius: 8px;
-  display: flex;
-  justify-content: center;
-  padding: 5px;  
-  background-color:#ffffff;
-  color:#000000;
-}
-
-.academic-activity-feed-item-date-even {
+.academic-activity-feed-item-year {
   border: 1px solid;
   border-radius: 8px;
   display: flex;
