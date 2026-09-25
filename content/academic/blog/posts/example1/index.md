@@ -1,6 +1,6 @@
 +++
 type = 'academic'
-layout = 'blog'
+layout = 'post'
 title = 'example post'
 date = '2026-09-25'
 +++
