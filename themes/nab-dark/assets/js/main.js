@@ -1,13 +1,9 @@
 const filter = document.querySelector("#filter-input");
-const items = document.querySelectorAll(".academic-activity-feed-item");
-const yearHeadings = document.querySelectorAll(".academic-activity-feed-item-year");
+const items = document.querySelectorAll(".activity-feed-item");
+const yearHeadings = document.querySelectorAll(".activity-feed-item-year");
 
 filter.addEventListener("input", () => {
   const query = filter.value.trim().toLowerCase();
-
-  yearHeadings.forEach((yearHeading) => {        
-        yearHeading.style.display = "none"
-      });
 
   items.forEach((item) => {
     const title = item.getAttribute("data-title")?.toLowerCase() ?? "";
@@ -24,6 +20,7 @@ filter.addEventListener("input", () => {
         document.querySelector(`#year-${year}`).style.display = "";
       } else {
         item.style.display = "none";
+        document.querySelector(`#year-${year}`).style.display = "none";
       }
   });
 });

@@ -39,6 +39,11 @@ subtitle = 'Academic, Olympic Weightlifting Coach, Designer'
     pageRef = 'activity/'
     weight = 3
     
+  [[menus.academic]]
+    name = 'Blog'
+    pageRef = 'blog/'
+    weight = 4
+
   [[menus.coaching]]
     name = 'Menu'
     pageRef = '/'
@@ -52,6 +57,10 @@ subtitle = 'Academic, Olympic Weightlifting Coach, Designer'
 [caches]
   [caches.images]
     dir = ':cacheDir/images'
+
+[security]
+  allowContent = ['! ^text/org$']
+  enableInlineShortcodes = false
 
 [security.exec]
   allow = ["^(dart-)?sass$", "^go$", "^git$", "^node$", "^postcss$", "^tailwindcss$"]
