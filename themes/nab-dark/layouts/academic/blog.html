@@ -108,12 +108,7 @@
                                                     {{ end }}
                                                 {{ end }}
                                                 <li class="activity-field">                                
-                                                    <ul class="activity-tags">
-                                                        {{if isset .Params.activity "type"}}
-                                                            <li class="activity-tag">{{.Params.activity.type}}</li>
-                                                        {{ else }}
-                                                            <li class="activity-tag">TYPE placeholder</li>
-                                                        {{ end }}
+                                                    <ul class="activity-tags">                                                        
                                                         {{ range .Params.activity.tags}}  
                                                             <li class="activity-tag">{{.}}</li>
                                                         {{ end }}                          

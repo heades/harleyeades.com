@@ -11,12 +11,7 @@
               {{ $date := .Date.Format "02-01-2006"}}
               <h1>{{ .Title }}</h1>
               <span class="academic-post-date">Posted: {{ $date }}</span>
-              <ul class="activity-tags">
-                {{if isset .Params.activity "type"}}
-                    <li class="activity-tag">{{.Params.activity.type}}</li>
-                {{ else }}
-                    <li class="activity-tag">TYPE placeholder</li>
-                {{ end }}
+              <ul class="activity-tags">                
                 {{ range .Params.activity.tags}}  
                     <li class="activity-tag">{{.}}</li>
                 {{ end }}                          
