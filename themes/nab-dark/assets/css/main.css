@@ -378,20 +378,48 @@ a {
 }
 
 .activity-feed-post-a {  
-  color: #000000; 
+  color: #ffffff; 
 }
 
 .activity-feed-post-h4 {  
-  font-size: large;
-  padding: 2.5px;
+  background-color: #000000;
+  padding: 0;
   margin: 0;
-  background-color: #ffffff;
   border-radius: 6px 6px 0px 0px;
-  border: 1px solid #ffffff;
 }
 
-.activity-feed-post-h4-even {  
+.activity-feed-post-h4 a {  
+  display: flex;
+  font-size: large;
+  padding: 2.5px;
+  padding-left: 5px;
+  margin: 0;  
+  border-bottom: 1px solid #ffffff;
+  text-decoration: none;
+}
+
+.activity-feed-post-h4 a:hover {  
+  color: #000000;
+  border-radius: 6px 6px 0px 0px;
+  background-color: #ffffff;
+}
+
+.activity-feed-post-h4-even {    
   background-color: #cbc9c9;
+}
+
+.activity-feed-post-h4-even a { 
+  display: flex;   
+  color: #000000;
+  padding: 2.5px;
+  padding-left: 5px;
+  margin: 0;
+  border-bottom: 1px solid #ffffff;
+}
+
+.activity-feed-post-h4-even a:hover {  
+  color:#ffffff;
+  background-color: #000000;
 }
 
 .activity-feed-item-other a {  
