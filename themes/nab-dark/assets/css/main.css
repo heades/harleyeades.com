@@ -87,11 +87,6 @@ body {
   font-family: "Encode Sans Expanded", Arial, Helvetica, sans-serif;  
 }
 
-a {
-  color: var(--text-color);
-  text-decoration: underline;
-}
-
 .nav-bar-link {
   display: block;
   color: var(--link-color);
@@ -342,13 +337,9 @@ a {
   font-size: medium;  
   border: 1px solid;
   border-radius: 8px;
-  padding: 5px;
-  width: 100%;
-}
-
-.activity-feed-item-post {
   padding: 0;
   margin: 0;
+  width: 100%;
 }
 
 .activity-feed-item-other {
@@ -377,49 +368,52 @@ a {
   margin: 0;
 }
 
-.activity-feed-post-a {  
-  color: #ffffff; 
-}
 
-.activity-feed-post-h4 {  
+.activity-feed-h4 {  
   background-color: #000000;
   padding: 0;
   margin: 0;
   border-radius: 6px 6px 0px 0px;
 }
 
-.activity-feed-post-h4 a {  
+a {
+  color: crimson;
+  text-decoration: none;
+}
+
+.activity-feed-h4 a {  
   display: flex;
   font-size: large;
   padding: 2.5px;
   padding-left: 5px;
   margin: 0;  
   border-bottom: 1px solid #ffffff;
-  text-decoration: none;
 }
 
-.activity-feed-post-h4 a:hover {  
-  color: #000000;
+.activity-feed-h4 a:hover {    
   border-radius: 6px 6px 0px 0px;
-  background-color: #ffffff;
+  background-color: #ffffff;  
 }
 
-.activity-feed-post-h4-even {    
-  background-color: #cbc9c9;
+.activity-feed-h4-even {    
+  background-color: #e2e1e1;
 }
 
-.activity-feed-post-h4-even a { 
-  display: flex;   
-  color: #000000;
+.activity-feed-h4-even a:hover {  
+  background-color: #000000;
+}
+
+.activity-feed-h4 span {  
+  display: flex;
+  font-size: large;
   padding: 2.5px;
   padding-left: 5px;
-  margin: 0;
+  margin: 0;  
   border-bottom: 1px solid #ffffff;
 }
 
-.activity-feed-post-h4-even a:hover {  
-  color:#ffffff;
-  background-color: #000000;
+.activity-feed-h4-even span {  
+  color: #000000;
 }
 
 .activity-feed-item-other a {  
@@ -436,12 +430,8 @@ a {
 .activity-fields {
   display: flex;
   flex-direction: column;
-  padding-left: 15px;
-  gap: 5px;
-}
-
-.activity-fields-post {
   padding: 5px;
+  gap: 5px;
 }
 
 .activity-field {

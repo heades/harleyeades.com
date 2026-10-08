@@ -31,9 +31,8 @@
                                     {{ $itemId = 0 }}
                                     <li class="activity-feed-year-heading"
                                         id="year-{{ $year }}">{{ $year }}</li>
-                                {{ end }}    
-                                                                
-                                    <li class="activity-feed-item activity-feed-item-post"
+                                {{ end }}                                                                    
+                                    <li class="activity-feed-item"
                                         id="{{ path.Base $itemLink }}"
                                         data-title="{{ .Title }}"
                                         {{if isset .Params "activity"}}
@@ -50,14 +49,16 @@
                                         {{ end }}
                                         data-year="{{ $year }}">
                                 {{ $itemId = add $itemId 1 }}
+                                    <h4
                                     {{ if not (eq (mod $itemId 2) 0) }}
-                                        <h4 class="activity-feed-post-h4">
+                                        class="activity-feed-h4"
                                     {{ else }}
-                                        <h4 class="activity-feed-post-h4 activity-feed-post-h4-even">
+                                        class="activity-feed-h4 activity-feed-h4-even"
                                     {{ end }}
-                                        <a class="activity-feed-post-a" href="{{ $itemLink }}">{{ .Title | safeHTML }}</a>
+                                    >
+                                        <a href="{{ $itemLink }}">{{ .Title | safeHTML }}</a>
                                     </h4>
-                                    <ul class="activity-fields activity-fields-post">  
+                                    <ul class="activity-fields">  
                                         <li class="activity-field">
                                             <span>date: </span>
                                             <span>{{ $date }}</span>
