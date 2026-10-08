@@ -18,7 +18,7 @@
                 {{ $year := "" }}
                 {{ $yearId := 0 }}
                 {{ $itemId := 0 }}
-                {{ range (where (where site.RegularPages "Type" "academic") "Layout" "activity").ByDate.Reverse }}
+                {{ range (where site.RegularPages "Type" "academic").ByDate.Reverse }}
                     {{if isset .Params "activity"}}
                         {{if isset .Params.activity "type"}}
                             {{if eq .Params.activity.type "post"}}
@@ -29,15 +29,11 @@
                                     {{ $year = $currentYear }}
                                     {{ $yearId = add $yearId 1 }}
                                     {{ $itemId = 0 }}
-                                    <li class="activity-feed-item-year"
+                                    <li class="activity-feed-year-heading"
                                         id="year-{{ $year }}">{{ $year }}</li>
                                 {{ end }}    
-                                
-                                {{ if not (eq (mod $itemId 2) 0) }}
-                                    <li class="activity-feed-item activity-feed-item-other"                             
-                                {{ else }}
-                                    <li class="activity-feed-item" 
-                                {{ end }}
+                                                                
+                                    <li class="activity-feed-item activity-feed-item-post"
                                         id="{{ path.Base $itemLink }}"
                                         data-title="{{ .Title }}"
                                         {{if isset .Params "activity"}}
@@ -54,8 +50,14 @@
                                         {{ end }}
                                         data-year="{{ $year }}">
                                 {{ $itemId = add $itemId 1 }}
-                                    <h4><a href="{{ $itemLink }}">{{ .Title | safeHTML }}</a></h4>
-                                    <ul class="activity-field">  
+                                    {{ if not (eq (mod $itemId 2) 0) }}
+                                        <h4 class="activity-feed-post-h4">
+                                    {{ else }}
+                                        <h4 class="activity-feed-post-h4 activity-feed-post-h4-even">
+                                    {{ end }}
+                                        <a class="activity-feed-post-a" href="{{ $itemLink }}">{{ .Title | safeHTML }}</a>
+                                    </h4>
+                                    <ul class="activity-fields activity-fields-post">  
                                         <li class="activity-field">
                                             <span>date: </span>
                                             <span>{{ $date }}</span>
@@ -63,7 +65,7 @@
                                     {{if isset .Params "activity"}}                            
                                                 {{ if isset .Params.activity "authors" }}                                             
                                                     <li class="activity-field">
-                                                        <span>authors:</span>
+                                                        <span>author:</span>
                                                         <span>{{ delimit .Params.activity.authors ", " }}</span>
                                                     </li>
                                                 {{ end }}
