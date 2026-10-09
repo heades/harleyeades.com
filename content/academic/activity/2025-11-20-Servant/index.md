@@ -39,15 +39,15 @@ is the specification of the API at the type level. So this module will contain
 that type or several types. Since we are working at the type level it makes
 sense that we need language extensions:
 
-```.haskell
+<!-- ```.haskell
 {-# LANGUAGE DataKinds #-}
 {-# LANGUAGE TypeOperators #-}
-```
+``` -->
 
 I'll start by creating a single query for pulling all the Mega Man games which
 has the following schema:
 
-```.sql
+<!-- ```.sql
 CREATE TABLE IF NOT EXISTS games (
   game_id           BIGSERIAL PRIMARY KEY,
   slug              TEXT NOT NULL UNIQUE CHECK (is_valid_slug(slug)),
@@ -58,11 +58,11 @@ CREATE TABLE IF NOT EXISTS games (
   created_at        TIMESTAMPTZ NOT NULL DEFAULT NOW(),
   updated_at        TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
-```
+``` -->
 
 We can define the `Game` record as follows:
 
-```.haskell
+<!-- ```.haskell
 type Date = UTCTime
 
 data Game = Game {
@@ -71,21 +71,21 @@ data Game = Game {
     releaseDate :: Date,
     platform :: Text
 }
-```
+``` -->
 This can easily be encoded and decoded from JSON which Servant takes care of for
 us. Since we are using `Text` and `UTCTime` we also need the following imports:
 
-```.haskell
+<!-- ```.haskell
 import Servant.API
 import Data.Time (UTCTime)
 import Data.Text (Text)
-```
+``` -->
 
 Now using the `Game` record we define the `GameAPI` type as follows:
 
-```.haskell
+<!-- ```.haskell
 type GameAPI = "games" :> Get '[JSON] [Game]
-```
+``` -->
 Let's break this type's definition down:
 
 - `"games"` is the name of our query.
@@ -109,14 +109,14 @@ Let's break this type's definition down:
 
 Then from Servant we will need the following:
 
-```.haskell
+<!-- ```.haskell
 import Servant (Server, Application, Proxy(..), serve)
-```
+``` -->
 
 `Server` is the type of the server that we will create from our API `GameAPI`.
 It is here that we connect the API to our server-side resolver (Servant calls
 these handlers). It has the following definition:
-
+<!-- 
 ```.haskell
 class HasServer api context where
   type ServerT api (m :: Type -> Type) :: Type
@@ -135,7 +135,7 @@ class HasServer api context where
       -> ServerT api n
 
 type Server api = ServerT api Handler
-```
+``` -->
 
 This is a cool way to define the `Server` type, using a type class, because now
 Servant can create different instances based on how the API is defined. For
@@ -149,7 +149,7 @@ give the proxied API to the `serve` command when we create our final Servant
 allows us to actually serve our API on a port of our system.
 
 The `GameAPI` can now be turned into something servable using the above:
-
+<!-- 
 ```.haskell
 games :: [Game]
 games = []
@@ -163,14 +163,14 @@ gamesAPI = Proxy
 
 gamesApp :: Application
 gamesApp = serve gamesAPI serverGames
-```
+``` -->
 
 One question I currently have is, can `games` exist in the IO monad? I'll need
 to query the database which will need to be in IO.
 
 Finally, we can serve our API using the following:
 
-```.haskell
+<!-- ```.haskell
 module Main (main) where
 
 import Server (gamesApp)
@@ -179,7 +179,7 @@ import Network.Wai.Handler.Warp (run)
 
 main :: IO ()
 main = run 5000 gamesApp
-```
+``` -->
 
 Let's try and get this connected to the database using the [HASQL Library](https://hackage.haskell.org/package/hasql).
 
@@ -195,21 +195,21 @@ to install the full Postgres database in the container of our example API,
 because it runs in a separate container as its own service. So I just want to
 connect to it using HASQL as a client. This requires the following packages be
 installed in the API's container:
-
+<!-- 
 ```
 - libpq-dev
 - postgresql-client
-```
+``` -->
 
 These got HASQL to fully install as part of our project. I also needed to add
 the following dependencies to my `stack.yaml`'s `extra-deps`:
 
-```
+<!-- ```
 - testcontainers
 - testcontainers-postgresql
 - text-builder-core
 - text-builder
-```
+``` -->
 
 HASQL wouldn't compile without them. Now that I have a working build we can
 proceed with setting up HASQL to query my database. I created a new module
@@ -217,16 +217,16 @@ proceed with setting up HASQL to query my database. I created a new module
 
 First, we have to establish a connection with the database. Based on the
 documentation we should use these:
-
+<!-- 
 ```.haskell
 Hasql.Connection
 Hasql.Connection.Setting
 Hasql.Connection.Setting.Connection
-```
+``` -->
 
 I setup a database settings record:
 
-```.haskell
+<!-- ```.haskell
 data ConnectionSettings = ConnectionSettings {
     ipAddr :: String,
     port :: Int,
@@ -241,13 +241,13 @@ settings = ConnectionSettings {
     user = "postgres",
     dbname = "postgres"
 }
-```
+``` -->
 
 Then we can establish a connection to the database using `Connection.acquire ::
 [Setting] -> IO (Either ConnectionError Connection)` where we first define a
 `Setting` as a Postgres connection string:
 
-```.haskell
+<!-- ```.haskell
 psqlSettings :: T.Text
 psqlSettings = T.pack $ "host="++settings.ipAddr++" dbname="++settings.dbname++" user="++settings.user++" port="++(show settings.port)
 
@@ -255,10 +255,10 @@ connect :: IO (Either Connection.ConnectionError Connection.Connection)
 connect = Connection.acquire [connectSettings]
     where
         connectSettings = ConnectionSetting.connection $ ConnectionSettingConnection.string psqlSettings
-```
+``` -->
 
 Updating the main loop to make a connection to the database is pretty easy now:
-
+<!-- 
 ```.haskell
 main :: IO ()
 main = do
@@ -269,35 +269,35 @@ main = do
                           hFlush stdout
                           -- Make use of dbconn.
                           run 5000 gamesApp
-```
+``` -->
 
 In order to pass the database connection to `gamesApp`, we modify the type of
 `gamesApp` placing it into the `Control.Monad.Reader` monad.
-
+<!-- 
 ```.haskell
 gamesApp :: Reader Connection Application
 gamesApp = do
     sg <- serverGames
     return $ serve gamesAPI sg
-```
+``` -->
 
 Since the resolution of the query happens in `serverGames` we update it as well:
 
-```.haskell
+<!-- ```.haskell
 serverGames :: Reader Connection (Server GameAPI)
 serverGames = do
     dbconn <- ask
     return . liftIO $ games dbconn
-```
+``` -->
 
 The type of `gamesProxy` doesn't need to change, because it does'nt need to
 access the database. However, `games` is the resolution function, and hence does
 need access to the database, but we update it as a pure function:
 
-```.haskell
+<!-- ```.haskell
 games :: Connection -> IO [Game]
 games dbconn = return []
-```
+``` -->
 
 We now have access to the database in the resolution function for the `games`
 query. So the next step is to actually write an SQL query for all of the games
@@ -311,14 +311,14 @@ connection.  Then we simply pass the database connection and the session to the
 
 These both require encoding/decoding of the data to/from the database and
 Haskell. I defined the encoding between `Game` and Postgres as follows:
-
+<!-- 
 ```.haskell
 gameParams :: HEnc.Params Game
 gameParams = (title >$< HEnc.param (HEnc.nonNullable HEnc.text))
           <> (fmap fromInteger . seriesNumber >$< HEnc.param (HEnc.nullable HEnc.int8))
           <> (releaseDate >$< HEnc.param (HEnc.nullable HEnc.timestamptz))
           <> (platform >$< HEnc.param (HEnc.nullable HEnc.text))
-```
+``` -->
 
 This encoder allows for the `Game` record to be given as a parameter to an SQL
 statement. Each field of `Game` needs it's own encoding using 
@@ -327,9 +327,9 @@ between a Postgres value that can be nullable or not and a Haskell type. We
 compose this encoder with the projection function of the field we are encoding.
 For example,
 
-```.haskell
+<!-- ```.haskell
 fmap fromInteger . seriesNumber >$< HEnc.param (HEnc.nullable HEnc.int8)
-```
+``` -->
 
 This encoder of the `seriesNumber` field, first projects the series number, then
 converts it into an `Int64` which is then encoded as a parameter into Postgres.
@@ -341,37 +341,37 @@ Decoding is opposite, but operates at the row level of the returned data from
 the database. Ultimately, we wish to query for the list of all `Game`'s which
 corresponds to a list of games `[Game]`. Decoding a list of games is easy if we
 can decode  single row containing a `Game`. We do this as follows:
-
+<!-- 
 ```.haskell
 gameRow :: HDec.Row Game
 gameRow = Game <$> HDec.column (HDec.nonNullable HDec.text)               -- title
                <*> HDec.column (HDec.nullable (fmap toInteger HDec.int8)) -- seriesNumber
                <*> HDec.column (HDec.nullable HDec.timestamptz)           -- releaseDate
                <*> HDec.column (HDec.nullable HDec.text)                  -- platform
-```
+``` -->
 
 Here `gameRow` returns `Game` record by decoding each column of the row. The
 title of the game is decoded as:
-
+<!-- 
 ```.haskell
 HDec.column (HDec.nonNullable HDec.text) -- title
-```
+``` -->
 
 This says, decode this column as a `Text` value that is non-nullable. Thus, the
 above code has the type `Row Text` whereas the following:
-
+<!-- 
 ```.haskell
 HDec.column (HDec.nullable (fmap toInteger HDec.int8)) -- seriesNumber
-```
+``` -->
 
 has type `Row (Maybe Integer)`, because the series number is nullable.
 
 Next we use this decoder to decode lists of `Games`:
-
+<!-- 
 ```.haskell
 gamesDecoder :: HDec.Result [Game]
 gamesDecoder = HDec.rowList gameRow
-```
+``` -->
 
 We use the library function `rowList :: Row a -> Result [a]` to lift our `Game`
 decoder to lists. At this point we have everything we need to be able to resolve
@@ -384,13 +384,13 @@ In the previous section we finished with needing to define a `Statement` and a
 tightly to the actual query being resolved by Servant; and thus, we define these
 as part of the resolver for our `games` query in the module `Resolver`. The
 actual SQL statement we wish to execute is defined as a Hasql `Statement`:
-
+<!-- 
 ```.haskell
 selectGames :: Statement () [Game]
 selectGames = Statement sql HEnc.noParams gamesDecoder True
     where
         sql = "select title, series_number, release_date, platform from games"
-```
+``` -->
 
 The `selectGames` statement simply configures Hasql for parsing the SQL
 statement `sql`. This statement has no parameters indicated by using `noParams`,
@@ -400,11 +400,11 @@ indicated by `True` which should improve performance (based on the Hasql
 documentation).
 
 Using `selectGames` we can define our Hasql `Session`:
-
+<!-- 
 ```.haskell
 gamesSession :: Session [Game]
 gamesSession = statement () selectGames
-```
+``` -->
 
 Since we have no parameters we give
 `statement :: params -> Statement params result -> Session result` 
@@ -412,7 +412,7 @@ the unit `()`, but give `selectGames` as our result.
 
 Now we can use `gamesSession` to define our resolver for our `games` Servant
 query:
-
+<!-- 
 ```.haskell
 games :: Connection -> IO [Game]
 games dbconn = do
@@ -422,7 +422,7 @@ games dbconn = do
         Right g -> do print g
                       hFlush stdout
                       return g
-```
+``` -->
 
 We first run the `gamesSession` on the database using the given connection
 `dbconn`, and then simply case split on the result to determine if we got an
@@ -431,7 +431,7 @@ error or a value result.
 ## Executing a query
 
 We can now execute our `games` query to obtain the list of games:
-
+<!-- 
 ```.bash
 # curl http://localhost:5000/games
 [{"platform":"NES","releaseDate":"2000-01-01T01:11:34.962898Z","seriesNumber":1,"title":"Mega Man"},
@@ -439,7 +439,7 @@ We can now execute our `games` query to obtain the list of games:
   {"platform":"NES","releaseDate":"2000-01-01T01:11:34.963914Z","seriesNumber":3,"title":"Mega Man 3"},
   {"platform":"SNES","releaseDate":"2000-01-01T01:11:34.96509Z","seriesNumber":1,"title":"Mega Man X"},
   {"platform":"PS4","releaseDate":"2000-01-01T00:00:00.006849Z","seriesNumber":11,"title":"Mega Man 11"}]
-```
+``` -->
 
 As we can see all of the games in our database are returned. 
 
@@ -450,7 +450,7 @@ list of characters based on a JSON request with some detail we will use to
 filter the response. 
 
 A character is defined as follows:
-
+<!-- 
 ```.haskell
 data Character = Character {
     displayName :: Text,
@@ -462,10 +462,10 @@ data Character = Character {
 
 instance ToJSON Character
 instance FromJSON Character
-```
+``` -->
 
 Then we will pass in via JSON a character detail:
-
+<!-- 
 ```.haskell
 data CharDetails = DisplayName Text 
                  | Kind Text
@@ -479,7 +479,7 @@ newtype GetCharDetails = GetCharDetails {
 } deriving (Eq, Show, Generic)
 
 instance FromJSON GetCharDetails
-```
+``` -->
 
 The type `GetCharDetails` will be the structure of our JSON. For example,
 
@@ -493,11 +493,11 @@ The type `GetCharDetails` will be the structure of our JSON. For example,
 ```
 
 Now we can add a new endpoint to our `GameAPI`:
-
+<!-- 
 ```.haskell
 type GameAPI = "games"     :> Get '[JSON] [Game]
           :<|> "character" :> ReqBody '[JSON] GetCharDetails :> Post '[JSON] [Character]
-```
+``` -->
 
 Servant allows us to name the endpoint "character" and then require a JSON
 request body whose contents must parse as a `GetCharDetails` (the parsing will
@@ -510,29 +510,29 @@ to change it.
 
 However, our server `serverGames` now requires we define our resolvers as
 Servant handlers:
-
+<!-- 
 ```.haskell
 characterHandler :: Connection -> GetCharDetails -> Handler [Character]
 characterHandler dbconn deets = liftIO $ character dbconn (details deets)
 
 gamesHandler :: Connection -> Handler [Game]
 gamesHandler dbconn = liftIO $ games dbconn
-```
+``` -->
 
 The handler `gamesHandler` doesn't change, except for being in the `Handler`
 monad. The handler for our new endpoint `characterHandler` takes as input a
 database connection as well as a `GetCharDetails` which is the character details
 obtained from the JSON request body. In Servant, this simply corresponds to a
 new argument to the function. We implement this handler as follows:
-
+<!-- 
 ```.haskell
 characterHandler :: Connection -> GetCharDetails -> Handler [Character]
 characterHandler dbconn deets = liftIO $ character dbconn (details deets)
-```
+``` -->
 
 We simply call a resolver function that operates in `IO` and lift its result
 into the `Handler` monad. This allows `character` to be written fairly simply.
-
+<!-- 
 ```.haskell
 character :: Connection -> CharDetails -> IO [Character]
 character dbconn details = do
@@ -544,7 +544,7 @@ character dbconn details = do
         Right g -> do print g
                       hFlush stdout
                       return g
-```
+``` -->
 In fact, the only differences from the `games` resolver is that we call
 `characterSession` the Hasql session for executing the SQL query on our database
 using the character details, `details`.
@@ -552,7 +552,7 @@ using the character details, `details`.
 Then `characterSession` case splits on which character detail was passed in, and
 filter our results based on that:
 
-```.haskell
+<!-- ```.haskell
 characterSession :: CharDetails -> Session [Character]
 characterSession (DisplayName name) = statement name $ Statement sql textEncoder characterDecoder True
     where 
@@ -566,7 +566,7 @@ characterSession (Alignment alignment) = statement alignment $ Statement sql tex
 
 selectCharacterBySQL :: String -> String
 selectCharacterBySQL field = "SELECT display_name,kind,alignment,games.title AS game_title,description FROM characters INNER JOIN games on characters.debut_game_id = games.game_id WHERE "++field++" = $1"
-```
+``` -->
 
 One thing to note about this, I tried to use the Hasql template haskell library
 (Hasql-TH) to write my SQL statement, but since I'm using records, and in the
@@ -578,7 +578,7 @@ even more difficult.
 Besides the encoders for the data, this is all it took to extend our API with a
 more advanced endpoint. Here is an example query:
 
-```
+<!-- ```
 # curl -X POST -H "Content-Type: application/json" -d '{"details": {"tag": "Alignment", "contents": "villain"}}' http://localhost:5000/character
 [{"alignment":"villain","debut_game":"Mega Man","description":"Mad scientist","displayName":"Dr. Wily","kind":"scientist"},
  {"alignment":"villain","debut_game":"Mega Man","description":"Timber-cutting robot","displayName":"Cut Man","kind":"robot_master"},
@@ -589,7 +589,7 @@ more advanced endpoint. Here is an example query:
  {"alignment":"villain","debut_game":"Mega Man","description":"Power plant robot","displayName":"Elec Man","kind":"robot_master"},
  {"alignment":"villain","debut_game":"Mega Man 2","description":"Uses deadly Metal Blades","displayName":"Metal Man","kind":"robot_master"},
  {"alignment":"villain","debut_game":"Mega Man 2","description":"Controls wind attacks","displayName":"Air Man","kind":"robot_master"}]
-```
+``` -->
 
 To be continued....
 
