@@ -41,7 +41,7 @@ subtitle = 'Academic, Olympic Weightlifting Coach, Designer'
     
   [[menus.academic]]
     name = 'Blog'
-    pageRef = 'blog/'
+    pageRef = '/academic/blog/'
     weight = 4
 
   [[menus.coaching]]
@@ -53,6 +53,11 @@ subtitle = 'Academic, Olympic Weightlifting Coach, Designer'
     name = 'Home'
     pageRef = '/coaching'
     weight = 2
+  
+  [[menus.coaching]]
+    name = 'Blog'
+    pageRef = '/coaching/blog/'
+    weight = 3
 
 [caches]
   [caches.images]
