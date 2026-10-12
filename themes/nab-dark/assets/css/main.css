@@ -348,7 +348,7 @@ body {
   font-size: medium;  
   border: 1px solid;
   border-radius: 8px;
-  padding: 0px;
+  padding: 0;
   margin: 0px;
   width: 100%;
 }
@@ -382,7 +382,7 @@ body {
 
 .activity-feed-h4 {  
   background-color: #000000;
-  padding: 0;
+  padding: 5px;
   margin: 0;
   border-radius: 6px 6px 0px 0px;
 }
@@ -397,6 +397,7 @@ a {
   font-size: large;
   padding: 2.5px;
   padding-left: 5px;
+  padding-bottom: 5px;
   margin: 0;  
   border-bottom: 1px solid #ffffff;
 }
@@ -419,12 +420,14 @@ a {
   font-size: large;
   padding: 2.5px;
   padding-left: 5px;
+  padding-bottom: 5px;
   margin: 0;  
   border-bottom: 1px solid #ffffff;
 }
 
 .activity-feed-h4-even span {  
   color: #000000;
+  border-bottom: none;
 }
 
 .activity-feed-item-other a {  
@@ -441,7 +444,7 @@ a {
 .activity-fields {
   display: flex;
   flex-direction: column;
-  padding: 5px;
+  padding: 10px;
   gap: 5px;
 }
 
@@ -494,7 +497,11 @@ a {
   padding: 2px;
   padding-right: 5px;
   padding-left: 5px;
-  font-size: x-small;
+  font-size: small;
+}
+
+.academic-home-content {
+    max-width: 100%;
 }
 
 @media (min-width: 1100px) {
@@ -521,16 +528,17 @@ a {
   margin: 0;
 }
 
-.highlight {
-  min-width: 0;
+pre {
   overflow-x: auto;
-  width: 10px;
+  background:#e2e1e1;
+  color: black;
+  padding: 5px;
 }
 
-.highlight pre {
-  width: 10%;
+pre code {
   overflow-x: auto;
-  white-space: pre;
+  font-family:ui-monospace, SFMono-Regular, SF Mono, Menlo,
+             Consolas, Liberation Mono, monospace;
 }
 
 .image-description-side-by-side img {
