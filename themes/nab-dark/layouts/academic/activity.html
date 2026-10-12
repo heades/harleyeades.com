@@ -98,7 +98,7 @@
                                                             <a href="https://arxiv.org/abs/{{ index . "value"  }}">{{ index . "value"  }}</a> 
                                                         {{ else }}
                                                             {{ if eq $resource_type "link" }}
-                                                                <a href="{{ index . "value"  }}">{{ index . "value"  }}</a> 
+                                                                <a href="{{ index . "value"  }}">{{ index . "value"  }}</a>
                                                             {{ else }}
                                                                 {{ if eq $resource_type "keynote-slides" }}
                                                                     <a href="/keynote-slides/{{ index . "value"  }}/">/slides</a> 
